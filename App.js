@@ -14,7 +14,7 @@ export default function App() {
           <Stack.Screen
             name="Home"
             component={HomeScreen}
-            options={{ headerShown: false }} // Desactiva el Header
+            options={{ headerShown: true, title: 'Blog', headerTitleAlign: 'center' }} // Desactiva el Header
           />
         </Stack.Navigator>
       </NavigationContainer>

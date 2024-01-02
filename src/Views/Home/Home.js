@@ -1,11 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import {
+  StyleSheet, View, Dimensions,
+} from 'react-native';
+import { HeaderHome } from './components';
+
+const { width, height } = Dimensions.get('screen');
 
 function HomeScreen() {
   return (
     <View style={styles.container}>
-      <Text>Esto es una Entrevista Tecnica para Fabian</Text>
-      <StatusBar style="auto" />
+      <HeaderHome />
     </View>
   );
 }
@@ -15,8 +19,5 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
