@@ -11,6 +11,8 @@ npm install
 Para Android
 npx expo start
 
+Descargar Aplicacion ExpGo y escanear el codigo QR generado en la terminal con la aplicacion Expo Go
+
 #### Construido con
 
 React Native
