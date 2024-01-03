@@ -24,5 +24,6 @@ module.exports = {
     'no-use-before-define': ['error', { variables: false }],
     'linebreak-style': 0,
     'import/no-extraneous-dependencies': 'off',
+    'import/prefer-default-export': 'off',
   },
 };

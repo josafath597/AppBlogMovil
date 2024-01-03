@@ -1,51 +1,73 @@
+/* eslint-disable react/forbid-prop-types */
 import {
   Dimensions, StyleSheet, View,
 } from 'react-native';
 import React, { useState } from 'react';
-import { Chip, TextInput, useTheme } from 'react-native-paper';
+import {
+  Chip, TextInput, useTheme, Button,
+} from 'react-native-paper';
+import useEntriesContext from '../../../hooks/useEntriesContext';
 
 const { width, height } = Dimensions.get('screen');
 
 function HeaderHome() {
+  const {
+    setEntries, entries, baseEntries,
+  } = useEntriesContext();
   const { colors } = useTheme();
   const [searchQuery, setSearchQuery] = useState('');
-  const handleSearch = () => {
-    console.log(searchQuery);
-  };
-  const [selectedFilter, setSelectedFilter] = useState('titulo');
+  const [selectedFilter, setSelectedFilter] = useState('title');
   const handleFilterPress = (filter) => {
     setSelectedFilter(filter);
+  };
+  const handleSearch = () => {
+    if (!searchQuery) {
+      setEntries(baseEntries);
+      return;
+    }
+    const newEntries = entries.filter(
+      (entry) => entry[selectedFilter].toLowerCase().includes(searchQuery.toLowerCase()),
+    );
+    setEntries(newEntries);
   };
   return (
     <View>
       <View style={styles.chipContainer}>
         <Chip
-          selected={selectedFilter === 'titulo'}
-          onPress={() => handleFilterPress('titulo')}
-          style={[styles.chip, { backgroundColor: selectedFilter === 'titulo' ? colors.primary : '#000000' }]}
+          selected={selectedFilter === 'title'}
+          onPress={() => handleFilterPress('title')}
+          style={[styles.chip, { backgroundColor: selectedFilter === 'title' ? colors.primary : '#000000' }]}
           textStyle={{ color: 'white' }}
           selectedColor="white"
         >
           Titulo
         </Chip>
         <Chip
-          selected={selectedFilter === 'contenido'}
-          onPress={() => handleFilterPress('contenido')}
-          style={[styles.chip, { backgroundColor: selectedFilter === 'contenido' ? colors.primary : '#000000' }]}
+          selected={selectedFilter === 'content'}
+          onPress={() => handleFilterPress('content')}
+          style={[styles.chip, { backgroundColor: selectedFilter === 'content' ? colors.primary : '#000000' }]}
           textStyle={{ color: 'white' }}
           selectedColor="white"
         >
           Contenido
         </Chip>
         <Chip
-          selected={selectedFilter === 'autor'}
-          onPress={() => handleFilterPress('autor')}
-          style={[styles.chip, { backgroundColor: selectedFilter === 'autor' ? colors.primary : '#000000' }]}
+          selected={selectedFilter === 'author'}
+          onPress={() => handleFilterPress('author')}
+          style={[styles.chip, { backgroundColor: selectedFilter === 'author' ? colors.primary : '#000000' }]}
           textStyle={{ color: 'white' }}
           selectedColor="white"
         >
           Autor
         </Chip>
+      </View>
+      <View style={styles.containerButtonReset}>
+        <Button
+          mode="contained"
+          onPress={() => setEntries(baseEntries)}
+        >
+          Restablecer
+        </Button>
       </View>
       <View style={styles.headerContainer}>
         <TextInput
@@ -70,12 +92,7 @@ const styles = StyleSheet.create({
     minWidth: width * 0.3,
     alignSelf: 'center',
   },
-  container: {
-    flex: 1,
-  },
   headerContainer: {
-    width: width * 0.9,
-    alignSelf: 'center',
     flexDirection: 'row',
     gap: width * 0.009,
   },
@@ -92,5 +109,8 @@ const styles = StyleSheet.create({
   },
   chip: {
     // Puedes añadir estilos adicionales para los chips si es necesario
+  },
+  containerButtonReset: {
+    marginBottom: height * 0.01,
   },
 });

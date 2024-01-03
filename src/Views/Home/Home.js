@@ -1,15 +1,14 @@
-import { useState } from 'react';
-import {
-  StyleSheet, View, Dimensions,
-} from 'react-native';
-import { HeaderHome } from './components';
+import { StyleSheet, View, Dimensions } from 'react-native';
+import { AddNewEntry, BodyHome, HeaderHome } from './components';
 
-const { width, height } = Dimensions.get('screen');
+const { width } = Dimensions.get('screen');
 
 function HomeScreen() {
   return (
     <View style={styles.container}>
       <HeaderHome />
+      <BodyHome />
+      <AddNewEntry />
     </View>
   );
 }
@@ -19,5 +18,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: width * 0.9,
+    alignSelf: 'center',
   },
 });
