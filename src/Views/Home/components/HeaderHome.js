@@ -12,7 +12,7 @@ const { width, height } = Dimensions.get('screen');
 
 function HeaderHome() {
   const {
-    setEntries, entries, baseEntries,
+    setEntries, baseEntries,
   } = useEntriesContext();
   const { colors } = useTheme();
   const [searchQuery, setSearchQuery] = useState('');
@@ -25,7 +25,7 @@ function HeaderHome() {
       setEntries(baseEntries);
       return;
     }
-    const newEntries = entries.filter(
+    const newEntries = baseEntries.filter(
       (entry) => entry[selectedFilter].toLowerCase().includes(searchQuery.toLowerCase()),
     );
     setEntries(newEntries);

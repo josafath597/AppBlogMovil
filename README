@@ -1,0 +1,19 @@
+# Prueba Tecnica para Desarrollador React Native
+
+## Instalacion 
+
+### Instala las dependencias del Proyecto:
+
+npm install
+
+### Ejecucion: 
+
+Para Android
+npx expo start
+
+#### Construido con
+
+React Native
+
+#### Autor
+Fabian Josafat Cardenas Aldana

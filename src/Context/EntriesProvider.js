@@ -17,6 +17,7 @@ export function EntriesProvider({ children }) {
       const { data } = await axiosServices.get('/getEntries');
       setBaseEntries(data.posts);
       setEntries(data.posts);
+      setIsLoading(false);
     };
     getEntries();
   }, []);
